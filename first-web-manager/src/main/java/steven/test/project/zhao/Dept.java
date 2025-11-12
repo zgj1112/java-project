@@ -1,10 +1,12 @@
 package steven.test.project.zhao;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+
 
 @Data
 @NoArgsConstructor
@@ -13,6 +15,11 @@ import java.time.LocalTime;
 public class Dept {
     private Integer id;
     private String name;
-    private LocalTime createTime;
-    private LocalTime updateTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 序列化 LocalTime
+    private LocalDateTime createTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
+
 }
