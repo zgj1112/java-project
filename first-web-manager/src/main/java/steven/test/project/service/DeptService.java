@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface DeptService {
     List<Dept> getDeptList(Integer pageNum, Integer pageSize, String name);
+
     Long countDepts(String name);
+
+    int insertDept(Dept dept);
+
+    int updateDept(Dept dept);
+
     int deleteById(Long id);
 }

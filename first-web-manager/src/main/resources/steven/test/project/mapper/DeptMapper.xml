@@ -28,6 +28,24 @@
         </where>
     </select>
 
+    <!-- 新增部门 -->
+    <insert id="insertDept" parameterType="steven.test.project.zhao.Dept" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO dept (name, count, remark)
+        VALUES (#{dept.name}, #{dept.count}, #{dept.remark})
+    </insert>
+
+    <!-- 修改部门 -->
+    <update id="updateDept">
+        UPDATE dept
+        <set>
+            <if test="dept.name != null">name = #{dept.name},</if>
+            <if test="dept.count != null">count = #{dept.count},</if>
+            <if test="dept.remark != null">remark = #{dept.remark},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{dept.id}
+    </update>
+
     <!-- 删除部门 -->
     <delete id="deleteById" parameterType="long">
         DELETE FROM dept WHERE id = #{id}

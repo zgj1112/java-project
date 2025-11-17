@@ -23,8 +23,9 @@ public class DeptController {
     }
     // 控制层类 用于最先接受到前端请求 三层中的第一层
 
+
     // 获取列表分页
-    @GetMapping("/depts")
+    @GetMapping("/depts/page")
     public Result list(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
@@ -35,9 +36,25 @@ public class DeptController {
         return Result.successPage(list, total);
     }
 
+    // 新增部门接口（POST）
+    @PostMapping("/depts/add")
+    public Result add(@RequestBody Dept dept) {
+        int row = deptService.insertDept(dept);
+        System.out.println(row);
+        return Result.success("新增成功");
+    }
+
+    // 修改（更新）部门信息
+    @PutMapping("/depts/update")
+    public Result update(@RequestBody Dept dept) {
+        int row = deptService.updateDept(dept);
+        System.out.println(row);
+        return Result.success("更新成功");
+        // return Result.error("更新失败");
+    }
 
     // 删除
-    @DeleteMapping("/depts")
+    @DeleteMapping("/depts/delete")
     public Result deptsDelete(@RequestParam("id") Long id) {
         int data = deptService.deleteById(id);
         System.out.println(data);

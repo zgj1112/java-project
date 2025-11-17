@@ -27,6 +27,15 @@ public class DeptServiceImp implements DeptService {
         return deptMapper.countDepts(name);
     }
 
+    @Override
+    public int updateDept(Dept dept) {
+        return deptMapper.updateDept(dept);
+    }
+
+    @Override
+    public int insertDept(Dept dept) {
+        return deptMapper.insertDept(dept);
+    }
 
     @Override
     public int deleteById(Long id) {

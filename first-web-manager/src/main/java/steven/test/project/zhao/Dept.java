@@ -13,8 +13,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 // 实体类 用于映射sql表字段
 public class Dept {
-    private Integer id;
+    private Long id;
     private String name;
+    private Integer count;
+    private String remark;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 序列化 LocalTime
     private LocalDateTime createTime;
