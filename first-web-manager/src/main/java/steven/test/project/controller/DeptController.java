@@ -12,6 +12,9 @@ import steven.test.project.zhao.Result;
 // import java.net.http.HttpRequest;
 import java.util.List;
 
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
+
 @RestController
 public class DeptController {
     private final DeptService deptService;
@@ -23,6 +26,8 @@ public class DeptController {
     }
     // 控制层类 用于最先接受到前端请求 三层中的第一层
 
+    // 日志输出
+    // private static final Logger log = LoggerFactory.getLogger(DeptController.class);
 
     // 获取列表分页
     @GetMapping("/depts/page")
@@ -31,6 +36,9 @@ public class DeptController {
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) String name
     ) {
+        // 日志
+        // log.info("查询部门列表 pageNum={}, pageSize={}, name={}", pageNum, pageSize, name);
+
         List<Dept> list = deptService.getDeptList(pageNum, pageSize, name);
         Long total = deptService.countDepts(name);
         return Result.successPage(list, total);
