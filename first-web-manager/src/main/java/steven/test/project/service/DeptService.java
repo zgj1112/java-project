@@ -9,9 +9,9 @@ public interface DeptService {
 
     Long countDepts(String name);
 
-    int insertDept(Dept dept);
+    void insertDept(Dept dept);
 
-    int updateDept(Dept dept);
+    void updateDept(Dept dept);
 
-    int deleteById(Long id);
+    void deleteById(Long id);
 }

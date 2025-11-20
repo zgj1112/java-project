@@ -28,17 +28,29 @@ public class DeptServiceImp implements DeptService {
     }
 
     @Override
-    public int updateDept(Dept dept) {
-        return deptMapper.updateDept(dept);
+    public void insertDept(Dept dept) {
+        int rows = deptMapper.insertDept(dept);
+        if (rows == 0) {
+            throw new RuntimeException("新增部门失败");
+        }
+        // return rows;
     }
 
     @Override
-    public int insertDept(Dept dept) {
-        return deptMapper.insertDept(dept);
+    public void updateDept(Dept dept) {
+        int rows = deptMapper.updateDept(dept);
+        if (rows == 0) {
+            throw new RuntimeException("更新部门失败，记录不存在");
+        }
+        // return rows;
     }
 
     @Override
-    public int deleteById(Long id) {
-        return deptMapper.deleteById(id);
+    public void deleteById(Long id) {
+        int rows = deptMapper.deleteById(id);
+        if (rows == 0) {
+            throw new RuntimeException("删除失败，记录不存在");
+        }
+        // return rows;
     }
 }

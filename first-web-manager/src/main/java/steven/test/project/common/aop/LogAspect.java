@@ -1,3 +1,4 @@
+//============== 日志配置文件 ===========
 package steven.test.project.common.aop;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -7,8 +8,7 @@ import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 // import org.springframework.web.bind.annotation.*;
-
-        import java.util.Arrays;
+import java.util.Arrays;
 
 @Slf4j
 @Aspect
