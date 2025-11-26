@@ -35,6 +35,20 @@ public class Result {
         return success(map);
     }
 
+    /**
+     * 失败结果（带自定义错误码和消息）
+     * @param code 错误码
+     * @param message 错误消息
+     * @return 失败结果对象
+     */
+    public static Result error(Integer code, String message) {
+        Result result = new Result();
+        result.setCode(code);
+        result.setMessage(message);
+        result.setData(null);
+        return result;
+    }
+
     // 失败
     // public static Result error(Integer code, String message) {
     //     Result result = new Result();

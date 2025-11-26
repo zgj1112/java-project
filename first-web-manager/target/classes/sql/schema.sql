@@ -1,8 +1,8 @@
+# create database if not exists myproject;
 DROP TABLE IF EXISTS dept;
-
 CREATE TABLE dept
 (
-    id          INT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'ID, 主键',
+    id          BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'ID, 主键',
     name        VARCHAR(50) NOT NULL UNIQUE COMMENT '部门名称',
     count       INT          DEFAULT 0 COMMENT '部门人数',
     remark      VARCHAR(255) DEFAULT NULL COMMENT '备注',

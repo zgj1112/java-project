@@ -1,5 +1,7 @@
 package steven.test.project.zhao;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 // 实体类 用于映射sql表字段
 public class Dept {
+    // 使用数据库自增
+    @TableId(type = IdType.AUTO)
     private Long id;
     private String name;
     private Integer count;
