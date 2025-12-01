@@ -36,9 +36,9 @@ public class LogAspect {
 
         Object[] args = joinPoint.getArgs();
         try {
-            log.info("==> 请求参数: {}", objectMapper.writeValueAsString(args));
+            log.info("==> 请求参数1: {}", objectMapper.writeValueAsString(args));
         } catch (Exception e) {
-            log.info("==> 请求参数: {}", Arrays.toString(args));
+            log.info("==> 请求参数2: {}", Arrays.toString(args));
         }
     }
 

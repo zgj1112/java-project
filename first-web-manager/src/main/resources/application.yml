@@ -8,7 +8,8 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+server:
+  port: 8888
 #mybatis配置
 #mybatis:
 #  configuration:
@@ -18,3 +19,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto   # 或者删除 id-type 配置
+
+# 文件存储配置
+file:
+  upload-path: ${user.home}/my-project-uploads/

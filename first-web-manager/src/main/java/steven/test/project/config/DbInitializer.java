@@ -10,7 +10,6 @@ import jakarta.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.*;
 
-
 // ================== 初始化数据库保证一键启动 ==================
 @Component // 创建一个组件    扫描期间发生
 public class DbInitializer {
@@ -48,11 +47,14 @@ public class DbInitializer {
         DatabaseMetaData metaData = conn.getMetaData();
         try (ResultSet rs = metaData.getTables(conn.getCatalog(), null, "dept", new String[]{"TABLE"})) {
             return rs.next();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("建库失败", e);
         }
     }
-    /** 判断库是否存在，不存在则创建 */
+
+    /**
+     * 判断库是否存在，不存在则创建
+     */
     private void createDatabaseIfNotExists(Connection conn) throws SQLException {
         try (Statement stmt = conn.createStatement()) {
             String dbName = "myproject";

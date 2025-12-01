@@ -10,7 +10,7 @@ import steven.test.project.zhao.Dept;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-24T17:41:47+0800",
+    date = "2025-12-01T14:29:38+0800",
     comments = "version: 1.6.0, compiler: javac, environment: Java 24.0.1 (Oracle Corporation)"
 )
 public class DeptConvertImpl implements DeptConvert {
@@ -67,6 +67,7 @@ public class DeptConvertImpl implements DeptConvert {
 
         DeptRespVO deptRespVO = new DeptRespVO();
 
+        deptRespVO.setId( dept.getId() );
         deptRespVO.setName( dept.getName() );
         deptRespVO.setCount( dept.getCount() );
         deptRespVO.setRemark( dept.getRemark() );

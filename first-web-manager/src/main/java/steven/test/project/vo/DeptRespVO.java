@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 @Schema(description = "部门返回对象")
 public class DeptRespVO {
 
+    @Schema(description = "部门ID", example = "1")
+    private Long id;
+
     @Schema(description = "部门名称", example = "研发部")
     private String name;
 

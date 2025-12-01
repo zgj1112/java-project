@@ -13,11 +13,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 // ==== 日志用法 ====
-// import org.slf4j.Logger;
-// import org.slf4j.LoggerFactory;
-// private static final Logger log = LoggerFactory.getLogger(DeptController.class);
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 // log.info("查询部门列表 pageNum={}, pageSize={}, name={}", pageNum, pageSize, name);
 
 //============== 控制层类 用于最先接受到前端请求 三层中的第一层 增删改查 swagger配置  ===========
@@ -25,7 +26,7 @@ import java.util.List;
 @RestController
 public class DeptController {
     private final DeptService deptService;
-
+    private static final Logger log = LoggerFactory.getLogger(DeptController.class);
     // 构造器注入
     @Autowired
     public DeptController(DeptService deptService) {
@@ -41,7 +42,9 @@ public class DeptController {
             @RequestParam(required = false) String name
     ) {
         List<Dept> list = deptService.getDeptList(pageNum, pageSize, name);
+        log.info("原始 list id: {}", list.stream().map(Dept::getId).collect(Collectors.toList()));  // 检查 id 是否已 null
         List<DeptRespVO> voList = DeptConvert.INSTANCE.convertList(list);
+        log.info("转换后 vo id: {}", voList.stream().map(DeptRespVO::getId).collect(Collectors.toList()));
         Long total = deptService.countDepts(name);
 
         return Result.successPage(voList, total);
