@@ -36,7 +36,23 @@ public class DbInitializer {
                 ScriptUtils.executeSqlScript(conn, new ClassPathResource("sql/data.sql"));
                 System.out.println("dept 表创建完成并已初始化数据。");
             } else {
-                System.out.println("dept 表已存在，跳过初始化。");
+                // System.out.println("dept 表已存在，跳过初始化。");
+
+                System.out.println("数据库已存在，正在删除并重建...");
+                // 删除整个数据库
+                try (Statement stmt = conn.createStatement()) {
+                    stmt.executeUpdate("DROP DATABASE IF EXISTS `myproject`");
+                    stmt.executeUpdate("CREATE DATABASE `myproject` DEFAULT CHARACTER SET utf8mb4");
+                    System.out.println("数据库已删除并重建。");
+                }
+
+                // 重新切换到新库（DROP 后连接的 catalog 已失效）
+                conn.setCatalog("myproject");
+
+                // 重新执行建表 + 初始化数据
+                ScriptUtils.executeSqlScript(conn, new ClassPathResource("sql/schema.sql"));
+                ScriptUtils.executeSqlScript(conn, new ClassPathResource("sql/data.sql"));
+                System.out.println("所有表重建完成并已重新初始化数据。");
             }
         } catch (SQLException e) {
             throw new RuntimeException("建表失败", e);

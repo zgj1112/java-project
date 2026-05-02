@@ -3,6 +3,7 @@ package steven.test.project.config;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
@@ -27,6 +28,16 @@ public class GlobalExceptionHandler {
         // 业务异常，只记录 WARN 级别日志，避免刷屏
         log.warn("[ServiceException] 业务异常：{}", e.getMessage());
         return Result.error(e.getCode(), e.getMessage());
+    }
+
+    /**
+     * 缺少必填请求参数（如未带 ?code= ），返回 400 而非落入通用 500
+     */
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public Result handleMissingParam(MissingServletRequestParameterException e) {
+        String name = e.getParameterName();
+        log.warn("[MissingParam] 缺少必填参数：{}", name);
+        return Result.error(400, "缺少必填参数：" + name + "。树接口示例：GET /tree-nodes/tree?code=MENU");
     }
 
     /**
